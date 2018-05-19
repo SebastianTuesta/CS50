@@ -1,0 +1,4 @@
+0. N X N dimensions, where N is a a integer between 3 and 9, without 3 and 9
+1. Matrix
+2. init
+3. init, draw, move and won

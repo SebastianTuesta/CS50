@@ -1,0 +1,21 @@
+0.  It is an artificial long word said to mean a lung disease caused by inhaling very fine ash and sand dust.
+1.  getrusage() returns resource usage measures for the calling process itself, the children of the calling process, or the calling thread.
+2.  16 - 2 structs and 16 long types.
+3.  Passing in values involves copying the two 16 member struts which would take some time and memory. Since the purpose of getrusage() is to track the resources required (including time and RAM) this would lead to inaccuracies. 
+    Additionally, if a rusage struct has an undefined value it is autonatically set to zero. This negates any dereferencing crashes or extra checks.
+4.  The text file is specified in the command line as the 2nd or 3rd argument. A file pointer is set to a file that is opened in "readmode".
+    If the pointer is pointed at a null character then an error is thrown. Then variables are set up before the loop. "index" tracks the position in the word,
+    "misspellings" tracks the amount of words misspelt, "words" tracks the amount of words scanned for misspellings, "word" is the character set that is 
+    hopefully building a word that is set to the maximum size of a word plus the end of string character.
+
+    The loop points the cursor at each character until it points at an end of file character. If the cursor's current character is alphabetical
+    or an apostrophe proceeded by a letter then the character is added to "word" in the indexth position and the index is incremented by 1. 
+    If the character falls under those criteria but the word is too long then the loop passes through the remainder of the word and resets the "index". 
+    Similarly numbers are ignored. If a character is not alphabetical or a number or apostrophe then it must be the end of the word. An end of string character 
+    is added and the "words" counter is updated. The word is then passed through the mispelling checks.
+5.  fgetc reads the file character by character, discriminating vs anything that isn't alphabetical or an apostrophe proceeded by a character. 
+    fscanf reads until white space and stores the array in a buffer, the array may contain commas etc which would cause problems for the misspelling function.
+6.  The const type ensures that the initial value of the parameter cannot be modified. This means that each word we are checking along with the dictionary
+    cannot be changed. This safety measure is useful as these values should be consistent. Students are required to write these functions and it is possible
+    that they might accidently alter something they shouldn't.
+

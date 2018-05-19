@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+              <th> Stocks </th>
+              <th> Shares </th>
+              <th> Unit Prices </th>
+              <th> Total holding </th>
+            </tr>
+                {% for row in x %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>
+                        <form action="{{ url_for('buy')}}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Shares" type="number" min="1"/>
+                                    <button class="btn btn-default" name="symbol" type="submit" value={{ row[0] }}>Buy</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('sell') }}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Shares" type="number" min="1" max="{{ row[1] }}"/>
+                                    <button class="btn btn-default" name="symbol" type="submit" value={{ row[0] }}>Sell</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+
+
+    <p>Cash: {{ cash }}</p>
+    <p>Total Stock: {{ stock_total }} </p>
+{% endblock %}

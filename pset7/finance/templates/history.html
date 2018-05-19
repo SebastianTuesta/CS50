@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+              <th> Action </th>
+              <th> Greenwich Datetime </th>
+              <th> Stocks </th>
+              <th> Shares </th>
+              <th> Ancient Unit Prices </th>
+              <th> Ancient Total holding </th>
+            </tr>
+            {% for row in x %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
